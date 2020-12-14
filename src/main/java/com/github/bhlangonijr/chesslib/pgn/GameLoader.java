@@ -115,6 +115,22 @@ public class GameLoader {
 
                                 break;
                             }
+                            case "link": {
+                                if (round == null) {
+                                    round = GameFactory.newRound(event, 1);
+                                    event.getRound().put(1, round);
+                                }
+                                if (game == null) {
+                                    game = GameFactory.newGame(p.value, round);
+                                    game.setDate(event.getStartDate());
+                                    round.getGame().add(game);
+                                }
+                                else {
+                                	game.setGameId(p.value);
+                                }
+
+                                break;
+                            }
                             case "black": {
                                 if (round == null) {
                                     round = GameFactory.newRound(event, 1);

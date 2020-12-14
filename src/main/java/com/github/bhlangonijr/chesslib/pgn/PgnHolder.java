@@ -37,6 +37,7 @@ public class PgnHolder {
     private final List<Game> games = new ArrayList<Game>();
     private final List<PgnLoadListener> listener = new ArrayList<PgnLoadListener>();
     private String fileName;
+    private String fileContent;
     private Integer size;
     private boolean lazyLoad;
 
@@ -48,6 +49,11 @@ public class PgnHolder {
     public PgnHolder(String filename) {
         setFileName(filename);
         setLazyLoad(false);
+    }
+    
+    public PgnHolder(String fileContent, boolean lazyLoad) {
+    	this.fileContent = fileContent;
+        setLazyLoad(lazyLoad);
     }
 
     /**
@@ -123,6 +129,10 @@ public class PgnHolder {
      */
     public void loadPgn() throws Exception {
         loadPgn(new LargeFile(getFileName()));
+    }
+    
+    public void loadPgnFromFileContent() throws Exception {
+    	
     }
 
     /**
