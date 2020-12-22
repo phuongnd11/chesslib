@@ -47,7 +47,7 @@ public class GameLoader {
         while (iterator.hasNext()) {
         	
             String line = iterator.next();
-            if (line.contains("Setup \"1")) {
+            if (line.contains("SetUp \"1")) {
             	toSkip = true;
             }
             if (toSkip) {
