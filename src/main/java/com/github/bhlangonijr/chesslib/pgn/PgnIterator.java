@@ -69,8 +69,10 @@ public class PgnIterator implements Iterable<Game> {
         	try {
         		game = GameLoader.loadNextGame(pgnLines);
         	} catch (Exception e) {
-        		System.out.println(e.getMessage());
-        		return true;
+        		while (pgnLines.hasNext()) {
+        			System.out.println(pgnLines.next());
+        		}
+        		throw e;
         	}
             return game != null;
         }

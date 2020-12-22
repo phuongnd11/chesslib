@@ -149,9 +149,7 @@ public class PgnHolder {
 
         try {
             for (Game game : games) {
-            	if (game != null) {
                 addGame(game);
-            	}
             }
         } finally {
             file.close();
