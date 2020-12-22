@@ -33,7 +33,7 @@ import static com.github.bhlangonijr.chesslib.pgn.PgnProperty.*;
 public class GameLoader {
 
     public static Game loadNextGame(Iterator<String> iterator) {
-
+    	
         Event event = null;
         Round round = null;
         Game game = null;
@@ -42,9 +42,32 @@ public class GameLoader {
         StringBuilder moveText = null;
         boolean moveTextParsing = false;
 
-
+        boolean toSkip = false;
+        int emptyLines = 0;
         while (iterator.hasNext()) {
+        	
             String line = iterator.next();
+            if (line.contains("Setup \"1")) {
+            	toSkip = true;
+            }
+            if (toSkip) {
+            	if (!line.trim().equals("")) {
+            		continue;
+            	} else {
+            		emptyLines++;
+            		if (emptyLines >= 2) {
+            			toSkip = false;
+            			event = null;
+            	        round = null;
+            	        game = null;
+            	        whitePlayer = null;
+            	        blackPlayer = null;
+            	        moveText = null;
+            	        moveTextParsing = false;
+            	        continue;
+            		}
+            	}
+        	}
             try {
                 line = line.trim();
                 if (line.startsWith(UTF8_BOM)) {
