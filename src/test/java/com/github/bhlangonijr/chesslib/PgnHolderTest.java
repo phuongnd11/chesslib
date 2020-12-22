@@ -151,20 +151,6 @@ public class PgnHolderTest {
                 game.getHalfMoves().toString());
 
     }
-    
-    /**
-     * Test pgn load 4.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    public void tesLntPGN() throws Exception {
-
-        PgnHolder pgn = new PgnHolder("src/test/resources/lnt.pgn");
-        pgn.loadPgn();
-        Game game = pgn.getGames().get(1);
-        game.loadMoveText();
-    }
 
 
     @Test
